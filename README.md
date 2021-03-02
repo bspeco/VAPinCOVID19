@@ -1,11 +1,11 @@
 # VAPinCOVID19
 This the respository that contains the code used for bulk RNAseq, scRNAseq, and microbiome analysis.
 
-# Bulk RNAseq Code
-bulkDESeq.R
+# Bulk RNAseq
+bulkDESeq.R: This R notebook can be used to reproduce differential gene expression and heatmap construction.
 
-# scRNAseq Code
-Secondary_Bacterial_Ingest_QC_Clustering.ipynb
+# scRNAseq 
+Secondary_Bacterial_Ingest_QC_Clustering.ipynb: This jupyter notebook can be used to reproduce cell clustering for single cell RNAseq. 
 
 # Microbiota
-C1-2-4_AlphaBeta_NoViruses.ipynb
+C1-2-4_AlphaBeta_NoViruses.ipynb: This jupyter notebook can be used to calculate Alpha and Beta Diversity with Bacteria and Fungi +/- protozoa.
