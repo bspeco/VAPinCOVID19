@@ -9,8 +9,3 @@ Secondary_Bacterial_Ingest_QC_Clustering.ipynb
 
 # Microbiota
 C1-2-4_AlphaBeta_NoViruses.ipynb
-# Metadata
-
-# Differentially regulated genes
-
-# Bulk and scRNAseq Pathway analysis
