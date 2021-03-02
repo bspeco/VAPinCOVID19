@@ -5,6 +5,7 @@ This the respository that contains the code used for bulk RNAseq, scRNAseq, and 
 bulkDESeq.R
 
 # scRNAseq Code
+Secondary_Bacterial_Ingest_QC_Clustering.ipynb
 
 # Microbiota
 C1-2-4_AlphaBeta_NoViruses.ipynb
