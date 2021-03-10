@@ -6,6 +6,7 @@ bulkDESeq.R: This R notebook can be used to reproduce differential gene expressi
 
 # scRNAseq 
 Secondary_Bacterial_Ingest_QC_Clustering.ipynb: This jupyter notebook can be used to reproduce cell clustering for single cell RNAseq. 
+DE_Analysis_SecondaryBacterial.ipynb: This jupyter notebook can be used to reproduce differential expression analysis for single cell RNAseq.
 
 # Microbiota
 COMET_Microbiome_Final.ipynb: This jupyter notebook can be used to calculate Alpha and Beta Diversity with Bacteria and Fungi.
