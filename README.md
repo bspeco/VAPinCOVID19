@@ -5,8 +5,11 @@ This the respository that contains the code used for bulk RNAseq, scRNAseq, and 
 bulkDESeq.R: This R notebook can be used to reproduce differential gene expression and heatmap construction.
 
 # scRNAseq 
-Secondary_Bacterial_Ingest_QC_Clustering.ipynb: This jupyter notebook can be used to reproduce cell clustering for single cell RNAseq. 
-DE_Analysis_SecondaryBacterial.ipynb: This jupyter notebook can be used to reproduce differential expression analysis for single cell RNAseq.
+PreprocessTrachAspirate_GITHUBnotations.ipynb: Data was processed and combined into adata ojbect
+scVI_GITHUBnotations.ipynb: scVI computation
+Clustering_lowclusterforDE_GITHUBannotations.ipynb: clustering (low resolution for entire mono/mac group - saved to take to R)
+Clustering_highres_GITHUBannotations.ipynb: higher resolution clustering
+R markdowns for pathway, volcano, and heatmaps:
 
 # Microbiota
 COMET_Microbiome_Final.ipynb: This jupyter notebook can be used to calculate Alpha and Beta Diversity with Bacteria and Fungi.
