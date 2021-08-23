@@ -1,0 +1,94 @@
+---
+title: "GithubAnnotations_TrachealAspirate"
+author: "SZ"
+date: "8/23/2021"
+output: html_document
+---
+Libraries Used
+```{r}
+# convert objects from scanpy
+library(scater)
+library(loomR)
+library(Seurat)
+library(patchwork)
+library(SeuratData)
+library(SeuratDisk)
+
+#volcano plots
+library(EnhancedVolcano)
+library(ggplot2)
+library(ggrepel)
+
+#heatmaps
+library("RColorBrewer")
+library("gplots")
+library(DESeq2)
+library(gplots)
+library(plyr)
+library(tidyverse)
+library(pheatmap)
+```
+
+# Example to Convert from Scanpy
+```{r}
+Convert("D:/comet_TA_h5ad_files/reanalysis/TAproj/adataEarly_samplesremoved_lowresclus.h5ad", dest = "h5seurat", overwrite = TRUE)
+adataLowRes <- LoadH5Seurat("D:/comet_TA_h5ad_files/reanalysis/TAproj/adataEarly_samplesremoved_lowresclus.h5seurat")
+```
+
+# Taking 'early time point' low resolution mono/mac analysis to completion. For higher resolution (example alveolar macs) or other subgroups, just substritute your adata object accordingly
+1) differential expression
+```{r}
+Idents(adataLowRes) <- "louvain"
+levels(adataLowRes)
+adataMM <- subset(adataLowRes, idents = "Monocyte/Macrophage")
+Idents(adataMM) <- "VAP"
+adataMMDEnofilt <- FindMarkers(adataMM, ident.1 = "Yes", ident.2 = "No", test.use = "MAST")
+write.csv(adataMMDEnofilt,'D:/comet_TA_h5ad_files/reanalysis/TAproj/MMlowres_Early.csv')
+```
+2) volcano plot
+```{r}
+keyvals <- ifelse(
+    MMlowres$avg_log2FC < -0.5, 'palegreen3',
+      ifelse(MMlowres$avg_log2FC > 0.5, 'deepskyblue1',
+        'black'))
+  keyvals[is.na(keyvals)] <- 'black'
+  names(keyvals)[keyvals == 'deepskyblue1'] <- 'high'
+  names(keyvals)[keyvals == 'black'] <- 'mid'
+  names(keyvals)[keyvals == 'palegreen3'] <- 'low'
+
+row.names(MMlowres) <- MMlowres$gene
+p1 <- EnhancedVolcano(MMlowres, lab = as.character(MMlowres$gene), x = 'avg_log2FC', y = 'p_val_adj', selectLab =    
+  rownames(MMlowres)[which(names(keyvals) %in% c('low','high'))], pCutoff = 0.05, FCcutoff = 0.5, colCustom = keyvals,
+  legendPosition = 'right', legendLabSize = 12, legendIconSize = 4.0)
+
+p1 + ggplot2::coord_cartesian(xlim=c(-2, 2)) + ggplot2::scale_x_continuous(breaks = seq(-2,2,0.5))
+```
+3) heatmap
+```{r}
+adataLowRes <- LoadH5Seurat("D:/comet_TA_h5ad_files/reanalysis/TAproj/adataEarly_samplesremoved_lowresclus.h5seurat")
+adataLowRes <- ScaleData(adataLowRes)
+
+MMlowres <- read.csv('D:/comet_TA_h5ad_files/reanalysis/TAproj/MMlowres_Early.csv')
+#Reorder results by log2foldchange
+MMlowres <- MMlowres[order(MMlowres$avg_log2FC), ]
+#pull out just FDR<0.05
+MMlowresSig.05 <- MMlowres[which(MMlowres$p_val_adj < 0.05), ]
+Idents(adataLowRes) <- "louvain"
+levels(adataLowRes)
+adataMM <- subset(adataLowRes, idents = "Monocyte/Macrophage")
+Idents(adataMM) <- "VAP"
+```
+
+```{r}
+top50_mono <- MMlowresSig.05 %>% top_n(50,avg_log2FC)
+head(MMlowresSig.05,50)
+```
+
+```{r}
+Mono.Mac.Heatmap <- DoHeatmap(adataMM, features = top50_mono$gene, group.by = 'VAP', size = 3, group.colors = c('#7CCD7C','#00BFFF')) + NoLegend() + theme(text = element_text(size = 5)) + scale_fill_gradient2(low = '#009ACD', mid = '#F9F4EC', high = '#8B0A50')
+ggplot2::ggsave(filename = 'Mono.Mac.Heatmap.png', dpi = 300, plot = Mono.Mac.Heatmap)
+```
+
+```{r}
+installed.packages()[names(sessionInfo()$otherPkgs), "Version"]
+``` 
