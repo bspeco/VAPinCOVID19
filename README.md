@@ -11,5 +11,10 @@ Clustering_lowclusterforDE_GITHUBannotations.ipynb: clustering (low resolution f
 Clustering_highres_GITHUBannotations.ipynb: higher resolution clustering, cell numbers, UMAPs
 R markdowns for pathway, volcano, and heatmaps: Rmarkdown_4GitHub.Rmd
 
-# Microbiota
-COMET_Microbiome_Final.ipynb: This jupyter notebook can be used to calculate Alpha and Beta Diversity with Bacteria and Fungi.
+# Microbiome Analyses
+The following files contain code used for microbiome analyses.
+1_Format_Input_files.html is used to format the input files.
+2_Coronavirus_percent.html is used to calculate the percent of reads assigned to SARS-CoV-2 in each sample.
+3_Calculate_Alpha_Beta.html is used to calculate the alpha and beta diversity.
+4_Heatmap_Top_Vap_Species.html is used to generate the heatmaps in Figure 6.
+5_Find_divergent_taxa.html is used to perform statistical analysis on the most abundant taxa.
