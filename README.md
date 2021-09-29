@@ -10,6 +10,7 @@ scVI_GITHUBnotations.ipynb: scVI computation
 Clustering_lowclusterforDE_GITHUBannotations.ipynb: clustering (low resolution for entire mono/mac group - saved to take to R)  
 Clustering_highres_GITHUBannotations.ipynb: higher resolution clustering, cell numbers, UMAPs  
 R markdowns for pathway, volcano, and heatmaps: Rmarkdown_4GitHub.Rmd  
+vap_classifier.ipynb: construction of the host-based classifier
 
 # Microbiome Analyses
 The following files contain code used for microbiome analyses.  
