@@ -18,3 +18,6 @@ The following files contain code used for microbiome analyses.
 2_Coronavirus_percent.html is used to calculate the percent of reads assigned to SARS-CoV-2 in each sample.  
 3_Calculate_Alpha_Beta.html is used to calculate the alpha and beta diversity.  
 4_Heatmap_Top_Vap_Species_byVAPCAT.html is used to generate the heatmaps in Figure 6.   
+
+# Host-based classifier
+vap_classifier.ipynb: used to generate the host-based classifier to predict VAP.
